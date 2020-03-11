@@ -1,0 +1,15 @@
+What color is the sky?
+Blue
+Red
+Green
+Yellow
+Who am i?
+Stav
+Yuval
+David
+Omer
+What is the capital of Germany?
+Berlin
+Frankfurt
+New York
+Jerusalem

@@ -2,9 +2,9 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
-public class Queue<T> {
+public class MyPriorityQueue<T> {
 
-	public Queue(ENUMPriority maxPriority) {
+	public MyPriorityQueue(ENUMPriority maxPriority) {
 		this.maxPriority = maxPriority.getValue();
 		this.queue = new PriorityQueue<QueueItem<T>>(new QueueItemComperator());
 	}
@@ -29,7 +29,7 @@ public class Queue<T> {
 	}
 	
 	public boolean remove(T item) {
-		return this.queue.remove(item);
+		return this.queue.remove(new QueueItem<T>(item, 0));
 	}
 	
 	public int size() {
@@ -59,14 +59,7 @@ public class Queue<T> {
 	private class QueueItemComperator implements Comparator<QueueItem<T>> { 
 	    public int compare(QueueItem<T> item1, QueueItem<T> item2) 
 	    { 
-	        switch(item1.priority.compareTo(item2.priority)) {
-		        case 1:
-		        	return -1;
-		        case -1:
-		        	return 1;
-		        default:
-		        	return 0;
-	        } 
+	        return item1.priority.compareTo(item2.priority);
 	    } 
 	} 
 	

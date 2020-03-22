@@ -23,9 +23,4 @@ public class BarData {
 	public void setColor(Color value) {
 		this.color = value;
 	}
-	
-	public String getLabel() {
-		return this.label;
-	}
-
 }

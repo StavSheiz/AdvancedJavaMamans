@@ -1,23 +1,26 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class YearlyTemperatures {
+public class TemperatureChartApp {
 
-	public YearlyTemperatures(ArrayList<YearData> data) {
+	public TemperatureChartApp(ArrayList<YearTemperatureData> data) {
 		this.yearsData = data;
 		this.frame = new JFrame("Monthly Temperatures");
-		this.chart = new BarChart();
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(560, 500);      
-		frame.setLocationRelativeTo(null);  
+		this.skeleton = new BarChartSkeleton();
+	
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setSize(560, 500);      
+		this.frame.setLocationRelativeTo(null);  
 	}
 	
 	public void start() {
@@ -30,11 +33,11 @@ public class YearlyTemperatures {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-            	YearData data = SelectYear();
+            	YearTemperatureData data = SelectYear();
             	
             	if(data != null) {
-            		chart.setTitle(data.getYearName());
-                	chart.setBars(formatBarData(data));
+            		skeleton.setTitle(data.getYearName());
+            		skeleton.setBars(formatBarData(data));
             	}
             	
             }
@@ -44,20 +47,20 @@ public class YearlyTemperatures {
         p.add(button);
         p.setBounds(10, 10, 80, 40);
 
-		frame.getContentPane().add(p);		
-		frame.getContentPane().add(chart);
+		frame.getContentPane().add(p, BorderLayout.NORTH);	
+		frame.getContentPane().add(this.skeleton, BorderLayout.CENTER);		
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 	}
 	
-	private ArrayList<YearData> yearsData;
+	private ArrayList<YearTemperatureData> yearsData;
 	private JFrame frame;
-	private BarChart chart;
+	private BarChartSkeleton skeleton;
 	
-	private YearData SelectYear() {
-		YearData year = null;
+	private YearTemperatureData SelectYear() {
+		YearTemperatureData year = null;
 		String message = "Enter a year";
 		
 		while(year == null) {
@@ -75,7 +78,7 @@ public class YearlyTemperatures {
 				return null;
 			}
 			
-			for(YearData yearData : this.yearsData) {
+			for(YearTemperatureData yearData : this.yearsData) {
 				if(yearData.getYearName().equals(yearString)) {
 					year = yearData;
 				}
@@ -89,9 +92,9 @@ public class YearlyTemperatures {
 		return year;
 	}
 	
-	private ArrayList<BarData> formatBarData(YearData data) {
+	private ArrayList<BarData> formatBarData(YearTemperatureData data) {
 		ArrayList<BarData> barData = new ArrayList<BarData>();
-		ArrayList<TemperatureData> tempsData = data.getMonthsData();
+		ArrayList<MonthTemperatureData> tempsData = data.getMonthsData();
 
 		int maxValue = tempsData.get(0).getTemperature();
 		int minValue = tempsData.get(0).getTemperature();
@@ -101,7 +104,7 @@ public class YearlyTemperatures {
 		maxIndexes.add(0);
 		
 		for(int i = 0; i < 12; i++) {
-			TemperatureData temp = tempsData.get(i);
+			MonthTemperatureData temp = tempsData.get(i);
 			barData.add(new BarData(temp.getTemperature(), Color.GRAY, temp.getMonth().name()));
 			
 			if(temp.getTemperature() > maxValue) {

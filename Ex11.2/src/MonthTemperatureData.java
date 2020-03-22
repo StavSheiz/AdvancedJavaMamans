@@ -1,7 +1,7 @@
 
-public class TemperatureData {
+public class MonthTemperatureData {
 
-	public TemperatureData(Month month, int temperature) {
+	public MonthTemperatureData(Month month, int temperature) {
 		this.month = month;
 		this.temperature = temperature;
 	}

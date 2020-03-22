@@ -4,17 +4,17 @@ import java.util.Random;
 public class Main {
 
 	public static void main(String[] args) {
-		ArrayList<YearData> data = getYearlyData();
-		YearlyTemperatures app = new YearlyTemperatures(data);
+		ArrayList<YearTemperatureData> data = getYearlyData();
+		TemperatureChartApp app = new TemperatureChartApp(data);
 		
 		app.start();
 	}
 	
-	private static ArrayList<YearData> getYearlyData() {
-		ArrayList<YearData> yearsData = new ArrayList<YearData>();
+	private static ArrayList<YearTemperatureData> getYearlyData() {
+		ArrayList<YearTemperatureData> yearsData = new ArrayList<YearTemperatureData>();
 		
 		for(int i = 2010; i<2020; i++) {
-			YearData year = new YearData(i, getMonthsData()); 
+			YearTemperatureData year = new YearTemperatureData(i, getMonthsData()); 
 		
 			yearsData.add(year);
 		}
@@ -22,12 +22,12 @@ public class Main {
 		return yearsData;
 	}
 	
-	private static ArrayList<TemperatureData> getMonthsData() {
-		ArrayList<TemperatureData> data = new ArrayList<TemperatureData>();
+	private static ArrayList<MonthTemperatureData> getMonthsData() {
+		ArrayList<MonthTemperatureData> data = new ArrayList<MonthTemperatureData>();
 		Random r = new Random();
 		
 		for(Month m : Month.values()) {
-			data.add(new TemperatureData(m, r.nextInt(70) - 20)); // Random temperature between -20 and 50 
+			data.add(new MonthTemperatureData(m, r.nextInt(70) - 20)); // Random temperature between -20 and 50 
 		}
 		
 		return data;

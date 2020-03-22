@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class CalendarProgram{
+public class Main{
 
     static JFrame frmMain;
     static Container pane;

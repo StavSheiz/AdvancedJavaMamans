@@ -58,6 +58,8 @@ public abstract class MyShape implements Cloneable {
 	public abstract void draw(Graphics g);
 	
 	@Override
-	protected abstract MyShape clone();
+	protected MyShape clone() throws CloneNotSupportedException {
+		return (MyShape)super.clone();
+	};
 
 }

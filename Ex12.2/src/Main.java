@@ -82,7 +82,11 @@ public class Main {
 		ArrayList<MyShape> clonedShapes = new ArrayList<MyShape>();
 		
 		shapes.forEach(shape -> {
-			clonedShapes.add(shape.clone());
+			try {
+				clonedShapes.add(shape.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		});
 		
 		return clonedShapes;

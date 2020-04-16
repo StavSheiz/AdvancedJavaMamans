@@ -12,7 +12,7 @@ public class Main {
 	
 	private static ArrayList<YearTemperatureData> getYearlyData() {
 		ArrayList<YearTemperatureData> yearsData = new ArrayList<YearTemperatureData>();
-		
+		 
 		for(int i = 2010; i<2020; i++) {
 			YearTemperatureData year = new YearTemperatureData(i, getMonthsData()); 
 		

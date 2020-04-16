@@ -20,9 +20,4 @@ public class MyLine extends MyShape {
 	private double getLength() {
 		return Math.sqrt(Math.abs(this.getX1()-this.getX2()) + Math.abs(this.getY1()-this.getY2()));
 	}
-
-	@Override
-	protected MyShape clone() {
-		return new MyLine(this.getX1(), this.getY1(), this.getX2(), this.getY2(), this.getColor());
-	}
 }

@@ -18,9 +18,9 @@ public class MyRectangle extends MyBoundedShape {
 		}
 	}
 
-	@Override
-	protected MyShape clone() {
-		return new MyRectangle(this.getX1(), this.getY1(), this.getX2(), this.getY2(), this.getColor(), this.getIsFilled());
-	}
+//	@Override
+//	protected MyShape clone() {
+//		return new MyRectangle(this.getX1(), this.getY1(), this.getX2(), this.getY2(), this.getColor(), this.getIsFilled());
+//	}
 
 }
